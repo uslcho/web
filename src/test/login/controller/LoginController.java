@@ -47,7 +47,7 @@ public class LoginController {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@RequestMapping("/view/loginout.do")
 	public void LoginOut(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
 		try {
