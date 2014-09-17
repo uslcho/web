@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="newboard">
+
+	<resultMap type="newboard" id="newboard">
+		<result property="newcontents" column="NEWCONTENTS" jdbcType="CLOB" javaType="java.lang.String"/>
+	</resultMap>
+
+	<select id="getBoardList" resultType="newboard" parameterType="newboard">
+		SELECT * FROM (
+			SELECT ROW_NUMBER()OVER(ORDER BY REF asc, STEP desc, B_LEVEL desc ) NUM, 
+				CEIL(ROW_NUMBER()OVER(ORDER BY REF DESC, STEP, B_LEVEL)/#{pageline}) PAGE, 
+				B_NO, REF, STEP, B_LEVEL, NAME, SUBJ, HIT, TO_CHAR (REGIDATE, 'YYYY-MM-DD') REGIDATE
+			FROM TESTBOARD ORDER BY REF DESC, STEP, B_LEVEL
+		 ) WHERE PAGE = #{page}
+	</select>
+
+	<select id="getBoard" parameterType="BigDecimal" resultType="newboard">
+		SELECT B_NO, REF, STEP, B_LEVEL, NAME, SUBJ, HIT, TO_CHAR (REGIDATE, 'YYYY-MM-DD') REGIDATE,	NEWCONTENTS			
+		FROM TESTBOARD WHERE B_NO = #{b_no}
+	</select>
+	
+	<select id="getRefMax" resultType="int">
+		SELECT NVL(MAX(REF)+1,'1') AS REF FROM TESTBOARD
+	</select>
+	
+	<insert id="insertBoard" parameterType="newboard">
+		INSERT INTO TESTBOARD (
+			B_NO, REF, STEP, B_LEVEL, NAME, SUBJ, NEWCONTENTS, HIT, REGIDATE
+		) VALUES (
+			SEQ_TESTBOARDBNO.NEXTVAL, #{ref}, '0', '0', #{name}, #{subj}, #{newcontents}, '0', sysdate
+		)
+		<selectKey resultType="BigDecimal" keyProperty="b_no" order="AFTER">
+			SELECT MAX(B_NO) AS B_NO FROM TESTBOARD
+		</selectKey>
+	</insert>
+	
+	<update id="updateBoard" parameterType="newboard">
+		UPDATE TESTBOARD SET
+			NAME     = #{name},			
+			SUBJ     = #{subj}, 
+			NEWCONTENTS  = #{newcontents},
+			REGIDATE = SYSDATE
+		WHERE B_NO = #{b_no}
+	</update>
+		
+	<update id="updateCommunitySetp" parameterType="newboard">
+		UPDATE TESTBOARD SET STEP = STEP+1 WHERE REF = #{ref} AND STEP > #{step}
+	</update>
+	
+	<select id="getStepMax" parameterType="newboard" resultType="int">
+		SELECT DECODE(#{step},'0',(MAX(STEP)+1),#{step}+1) AS STEP FROM TESTBOARD WHERE REF = #{ref}
+	</select>
+	
+	<insert id="insertReplyBoard" parameterType="newboard">
+		INSERT INTO TESTBOARD (
+			B_NO, REF, STEP, B_LEVEL, NAME, SUBJ, NEWCONTENTS, HIT, REGIDATE
+		) VALUES (
+			SEQ_TESTBOARDBNO.NEXTVAL, #{ref}, #{step}, #{b_level}+1, #{name}, #{subj}, #{newcontents}, '0', sysdate
+		)
+		<selectKey resultType="BigDecimal" keyProperty="b_no" order="AFTER">
+			SELECT MAX(B_NO) AS B_NO FROM TESTBOARD
+		</selectKey>
+	</insert>	
+</mapper>
