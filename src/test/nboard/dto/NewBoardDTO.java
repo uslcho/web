@@ -14,7 +14,7 @@ public class NewBoardDTO {
 	private int pageline = 10;
 	private int page = 1;
 	private BigDecimal num;
-	private String regidate;
+	private String regdate;
 	private String newcontents;
 
 	public String getNewcontents() {
@@ -23,11 +23,12 @@ public class NewBoardDTO {
 	public void setNewcontents(String newcontents) {
 		this.newcontents = newcontents;
 	}
-	public String getRegidate() {
-		return regidate;
+
+	public String getRegdate() {
+		return regdate;
 	}
-	public void setRegidate(String regidate) {
-		this.regidate = regidate;
+	public void setRegdate(String regdate) {
+		this.regdate = regdate;
 	}
 	public BigDecimal getB_no() {
 		return b_no;

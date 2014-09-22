@@ -4,13 +4,13 @@
 <mapper namespace="login">
 	
 	<select id="getLogin" parameterType="login" resultType="login">
-		SELECT USERSEQ, MEMBNO, DEPTNO, USERID, USERNM, MASTERYN, SINGLESANYN, SYSTEMMASTER 
+		SELECT USERID, PWD, USERNM
 		FROM MEMBUSER WHERE 1=1 
 		<if test="userid.toString() != null and userid.toString() !=''">
 			AND USERID = #{userid} 
 		</if>
 		<if test="pwd.toString() != null and pwd.toString() !=''">
-			AND PWD = MD5(#{pwd})
+			AND PWD = #{pwd}
 		</if>
 	</select>
 </mapper>

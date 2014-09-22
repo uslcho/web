@@ -40,7 +40,7 @@
 				<a href="./newview.do?b_no=<%=newBoardDTO.getB_no()%>"><%=newBoardDTO.getSubj() %></a>
 			</td>
 			<td><%=newBoardDTO.getName() %></td>
-			<td><%=newBoardDTO.getRegidate() %></td>		
+			<td><%=newBoardDTO.getRegdate() %></td>
 		</tr>
 	<%
 		}
