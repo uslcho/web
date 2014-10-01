@@ -10,6 +10,9 @@ public interface NewBoardDAO {
 	
 	public List<NewBoardDTO> getBoardList(NewBoardDTO newBoardDTO) throws Exception;
 	
+	//총갯수
+	public int getBoardTotalcnt(NewBoardDTO newBoardDTO) throws Exception;	
+	
 	public int insertBoard(NewBoardDTO newBoardDTO) throws Exception;
 	
 	public void updateBoard(NewBoardDTO newBoardDTO)  throws Exception;

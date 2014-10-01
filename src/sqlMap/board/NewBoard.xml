@@ -8,10 +8,17 @@
 	</resultMap>
 
 	<select id="getBoardList" resultType="newboard" parameterType="newboard">
-		SELECT A.B_NO, A.REF, A.STEP, A.B_LEVEL, A.NAME, A.SUBJ, A.HIT, date_format(A.REGDATE,"%Y-%m-%d") AS REGDATE
-			, @i:=@i+1 AS NUM
-		FROM BOARD A, (SELECT @i:=0 FROM DUAL) B 
+		SELECT * FROM (
+			SELECT A.*, @i:=@i+1 AS NUM
+			FROM BOARD A, (SELECT @i:=0 FROM DUAL) B
+			ORDER BY A.REF ASC, A.STEP DESC, A.B_LEVEL DESC
+		) A
 		ORDER BY A.REF DESC, A.STEP, A.B_LEVEL
+		LIMIT #{page}, #{pageline};
+	</select>
+
+	<select id="getBoardTotalcnt" parameterType="newboard" resultType="int">
+		SELECT COUNT(*) FROM BOARD
 	</select>
 
 	<select id="getBoard" parameterType="BigDecimal" resultType="newboard">

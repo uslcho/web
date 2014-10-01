@@ -28,6 +28,12 @@ public class NewBoardDAOImpl  extends SqlSessionDaoSupport implements NewBoardDA
 		return b_no;
 	}
 	
+	//총갯수
+	@Override
+	public int getBoardTotalcnt(NewBoardDTO newBoardDTO) throws Exception {
+		return Integer.parseInt(getSqlSession().selectOne("newboard.getBoardTotalcnt").toString());
+	}
+	
 	@Override
 	public  NewBoardDTO getBoard(BigDecimal b_no) throws Exception {
 		// TODO Auto-generated method stub		

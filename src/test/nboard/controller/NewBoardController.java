@@ -25,15 +25,37 @@ public class NewBoardController {
 	private NewBoardService newboardService;
 	
 	@RequestMapping("/view/board/newlist.do")
-	public ModelAndView getBoardList() {
+	public ModelAndView getBoardList(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
 		try {
 			NewBoardDTO pageModel = new NewBoardDTO();
-			pageModel.setPage(1);
 			pageModel.setPageline(10);
+			
+			int page = 0;
+			int nowpage = 1;
+			if(request.getParameter("page") == null) {
+				pageModel.setPage(0);	
+				nowpage = 1;
+			} else {
+				page = (Integer.parseInt(request.getParameter("page"))-1)*pageModel.getPageline();
+				pageModel.setPage(page);	
+				nowpage = Integer.parseInt(request.getParameter("page"));
+			}
+			
+			int totalcnt = this.newboardService.getBoardTotalcnt(pageModel);
+			
+			int totalpage = 1;			
+			Double doublepage = 0.0;
+			if(totalcnt > 0) {
+				doublepage = Double.valueOf(totalcnt)/Double.valueOf(pageModel.getPageline());
+				totalpage = (int)Math.ceil(doublepage);
+			}
 			
 			List<NewBoardDTO> newboardList = newboardService.getBoardList(pageModel);			
 			mav.addObject("newboardList", newboardList);
+			mav.addObject("totalcnt", totalcnt);
+			mav.addObject("totalpage", totalpage);
+			mav.addObject("nowpage", nowpage);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

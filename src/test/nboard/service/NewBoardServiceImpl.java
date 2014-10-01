@@ -34,6 +34,13 @@ public class NewBoardServiceImpl  implements NewBoardService{
 		return this.newBoardDAO.getBoardList(newBoardDTO);
 	}
 	
+	//총갯수
+	@Override
+	@Transactional(readOnly=true)	
+	public int getBoardTotalcnt(NewBoardDTO newBoardDTO) throws Exception {
+		return this.newBoardDAO.getBoardTotalcnt(newBoardDTO);
+	}
+	
 	//입력
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
