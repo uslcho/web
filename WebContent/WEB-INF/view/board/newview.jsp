@@ -7,25 +7,28 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="/web/css/style.css" media="screen"/>
 <title>Insert title here</title>
 </head>
 <body>
-	<table>
+	<table cellpadding="0" cellspacing="0" border="1" class="tableTd" width="700">
 		<tr>
-			<td>이름</td>
-			<td><%=newBoardDTO.getName() %></td>
+			<td width="100" class="titleThead">이름</td>
+			<td width="600"><%=newBoardDTO.getName() %></td>
 		</tr>
 		<tr>
-			<td>제목</td>
-			<td><%=newBoardDTO.getSubj() %></td>
+			<td width="100" class="titleThead">제목</td>
+			<td width="600"><%=newBoardDTO.getSubj() %></td>
 		</tr>		
 		<tr>
-			<td colspan="2"><%=newBoardDTO.getNewcontents() %></td>
+			<td width="700" colspan="2" style="text-align:left;"><%=newBoardDTO.getNewcontents() %></td>
 		</tr>
 	</table>
 	
-	<input type="button" value="목록보기" onclick="javascript:location.href='newlist.do'">
-	<input type="button" value="수정하기" onclick="javascript:location.href='newwrite.do?b_no=<%=newBoardDTO.getB_no()%>'">
-	<input type="button" value="답글" onclick="javascript:location.href='newReply.do?b_no=<%=newBoardDTO.getB_no()%>'">
+	<div style="width:700px;text-align:center;margin-top:5px;">
+		<input type="button" value="목록보기" onclick="javascript:location.href='newlist.do'">
+		<input type="button" value="수정하기" onclick="javascript:location.href='newwrite.do?b_no=<%=newBoardDTO.getB_no()%>'">
+		<input type="button" value="답글" onclick="javascript:location.href='newReply.do?b_no=<%=newBoardDTO.getB_no()%>'">
+	</div>
 </body>
 </html>

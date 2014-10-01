@@ -25,37 +25,33 @@
 <body>
 <form name="form" method="post" action="#">
 	<input type="hidden" id="page" name="page" value="${nowpage}" />
-	<table cellpadding="0" cellspacing="0" border="1" class="tableTd" width="80%">
+	<table cellpadding="0" cellspacing="0" border="1" class="tableTd" width="700">
 		<thead class="titleThead">
 			<tr>
-				<td width="10%">no</td>
-				<td width="70%">제목</td>
-				<td width="10%">이름</td>
-				<td width="10%">등록일시</td>
+				<td width="80">no</td>
+				<td width="350">제목</td>
+				<td width="100">이름</td>
+				<td width="170">등록일시</td>
 			</tr>
 		</thead>
 		
 		<tbody>
 			<c:forEach items="${newboardList}" var="goods"  varStatus="status">
 				<tr>
-					<td width="10%"><c:out value="${goods.num}" /></td>
-					<td width="70%">
+					<td width="80"><c:out value="${goods.num}" /></td>
+					<td width="350">
 						<a href="./newview.do?b_no=${goods.b_no}"><c:out value="${goods.subj}" /></a>
 					</td>
-					<td width="10%"><c:out value="${goods.name}" /></td>
-					<td width="10%"><c:out value="${goods.regdate}" /></td>
+					<td width="100"><c:out value="${goods.name}" /></td>
+					<td width="170"><c:out value="${goods.regdate}" /></td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
 	
-	<table width="80%" cellpadding="0" cellspacing="0" border="0" style="margin-top:5px;">
-		<tr>
-			<td><div id="paging"></div></td>
-		</tr>
-	</table>
+	<div style="width:700px;" id="paging"></div>
 	
-	<div style="width:80%;text-align:center;">
+	<div style="width:700px;text-align:center;">
 		<input type="button" value="글쓰기" onclick="javascript:location.href='newwrite.do'">
 	</div>
 </form>
@@ -73,7 +69,7 @@
 			text_color  			: '#000000',
 			background_color    	: '#ffffff',	
 			border_hover_color		: '#68BA64',
-			text_hover_color  		: 'white',
+			text_hover_color  		: '#000000',
 			background_hover_color	: '#CAE6C6', 
 			rotate                     : false,
 			images					: false,

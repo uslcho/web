@@ -103,14 +103,9 @@
 		$.fn.applystyle(o,$this,a_css,hover_css,_first,_ul,_ulwrapdiv,_divwrapright);
 		//calculate width of the ones displayed:
 		var outsidewidth = outsidewidth_tmp - _first.parent().width() -3;
-		if(ver == 'ie7'){
-			_ulwrapdiv.css('width','100%');
-			_divwrapright.css('right','0px');
-		}
-		else{
-			_ulwrapdiv.css('width',outsidewidth+'px');
-			_divwrapright.css('left',outsidewidth_tmp+6+'px');
-		}
+		
+		_ulwrapdiv.css('width','100%');
+		_divwrapright.css('right','0px');
 		
 		if(o.rotate){
 			_rotright.hover(

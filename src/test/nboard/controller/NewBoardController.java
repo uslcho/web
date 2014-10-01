@@ -71,6 +71,7 @@ public class NewBoardController {
 				NewBoardDTO newBoardDTO = newboardService.getBoard(new BigDecimal(request.getParameter("b_no")));
 				String content = newBoardDTO.getNewcontents();
 				content = content.replaceAll ("\"", "'");
+				content = content.replaceAll ("\n", "<br />");
 				//content = content.replaceAll ("&nbsp;", "&amp;nbsp;");
 				//content = content.replaceAll ("&nbsp;", " ");				
 				System.out.println("content====>>>>"+content);
