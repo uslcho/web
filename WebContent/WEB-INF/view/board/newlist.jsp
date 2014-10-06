@@ -9,11 +9,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link rel="stylesheet" type="text/css" href="/web/css/style.css" media="screen"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>게시판</title>
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />	    
+    <link href="/web/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="/web/bootstrap/css/font-awesome.css" type="text/css" media="screen" title="no title" charset="utf-8"/>
+    <link rel="stylesheet" href="/web/bootstrap/css/style.css" type="text/css" media="screen" title="no title" charset="utf-8"/>    	
 	<script src="/web/script/jquery-1.3.2.js"> </script> 
-	<script src="/web/script/jquery.paginate.js" type="text/javascript"></script>	
-<title>Insert title here</title>
+	<script src="/web/script/newpaging.js" type="text/javascript"></script>	
+
+	<title>Insert title here</title>
 	<script>
 		function nexpage(npage) {
 			var frm = document.form;
@@ -49,10 +58,12 @@
 		</tbody>
 	</table>
 	
-	<div style="width:700px;" id="paging"></div>
+	<div style="width:700px;" id="divpaging" class="pagination pagination-mini pagination-centered">
+		<ul id="paging"></ul>
+	</div>
 	
 	<div style="width:700px;text-align:center;">
-		<input type="button" value="글쓰기" onclick="javascript:location.href='newwrite.do'">
+		<input type="button" value="글쓰기"  class="btn" onclick="javascript:location.href='newwrite.do'">
 	</div>
 </form>
 
@@ -64,13 +75,6 @@
 			count 		: tpage,
 			start 		: nowpage,
 			display     : 10,
-			border					: true,
-			border_color			: '#BEF8B8',
-			text_color  			: '#000000',
-			background_color    	: '#ffffff',	
-			border_hover_color		: '#68BA64',
-			text_hover_color  		: '#000000',
-			background_hover_color	: '#CAE6C6', 
 			rotate                     : false,
 			images					: false,
 			mouse					: 'press',

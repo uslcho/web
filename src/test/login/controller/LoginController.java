@@ -31,6 +31,13 @@ public class LoginController {
 		return mav;
 	}
 	
+	@RequestMapping(value="/view/bootstrap.do", method=RequestMethod.GET)
+	public ModelAndView BootstrapTest(HttpServletRequest request, HttpServletResponse response) {		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("bootstrap");
+		return mav;
+	}	
+	
 	@RequestMapping(value="/view/login.do", method=RequestMethod.POST)
 	public void getLogin(HttpSession session, HttpServletRequest request, HttpServletResponse response, LoginDTO loginDTO) {		
 		try {

@@ -29,7 +29,7 @@ public class NewBoardController {
 		ModelAndView mav = new ModelAndView();
 		try {
 			NewBoardDTO pageModel = new NewBoardDTO();
-			pageModel.setPageline(10);
+			pageModel.setPageline(1);
 			
 			int page = 0;
 			int nowpage = 1;
