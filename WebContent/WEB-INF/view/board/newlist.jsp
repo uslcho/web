@@ -53,9 +53,9 @@
 	    <span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span>
 	  </div>	
 	
-	<table cellpadding="0" cellspacing="0" border="0" width="700" class="table table-bordered">
+	<table cellpadding="0" cellspacing="0" border="0" width="700" class="table table-striped table-bordered table-hover table-condensed">
 		<thead>
-			<tr>
+			<tr class="success"> 
 				<th width="80">no</th>
 				<th width="350">제목</th>
 				<th width="100">이름</th>
