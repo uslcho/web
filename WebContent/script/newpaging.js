@@ -4,7 +4,7 @@
 		return this.each(function() {
 			$this = $(this);
 			var o = $.meta ? $.extend({}, opts, $this.data()) : opts;
-			var selectedpage = o.start;
+			var selectedpage = o.start;			
 			$.fn.draw(o,$this,selectedpage);	
 		});
 	};

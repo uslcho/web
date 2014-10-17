@@ -15,7 +15,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="/web/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="/web/bootstrap/css/font-awesome.css" type="text/css" media="screen" title="no title" charset="utf-8"/>
-    <link rel="stylesheet" href="/web/bootstrap/css/style.css" type="text/css" media="screen" title="no title" charset="utf-8"/>
     <link rel="stylesheet" href="/web/bootstrap/css/bootstrap-theme.css" type="text/css" media="screen" title="no title" charset="utf-8"/>    
     <link rel="stylesheet" href="/web/bootstrap/css/bootstrap-datetimepicker.min.css" type="text/css" media="screen" title="no title" charset="utf-8"/>
     <script src="/web/script/jquery-1.3.2.js"> </script>
@@ -46,15 +45,15 @@
 
 
 
-	<table cellpadding="0" cellspacing="0" border="1" class="tableTd" width="700">
+	<table cellpadding="0" cellspacing="0" border="0" width="700"  class="table table-bordered">
 		<tr>
-			<td width="100" class="titleThead">이름</td>
+			<th width="100">이름</th>
 			<td width="600" style="text-align:left;">
 				<input type="text" name="name" style="width:550px;" value="<% if(newBoardDTO != null)  { %><%=newBoardDTO.getName() %><% } %>">
 			</td>
 		</tr>
 		<tr>
-			<td width="100" class="titleThead">제목</td>
+			<th width="100">제목</th>
 			<td width="600" style="text-align:left;">
 				<input type="text" name="subj" style="width:550px;" value="<%  if(newBoardDTO != null) {  %><%=newBoardDTO.getSubj() %><% } %>">
 			</td>
@@ -65,9 +64,10 @@
 			</td>
 		</tr>
 	</table>
-
-	<input type="button" value="글쓰기" onclick="savesubmit();">
-	<input type="button" value="목록보기" onclick="javascript:location.href='newlist.do'">
+	<div style="width:700px;text-align:center;margin-top:5px;">
+		<input type="button" value="글쓰기" class="btn" onclick="savesubmit();">
+		<input type="button" value="목록보기" class="btn" onclick="javascript:location.href='newlist.do'">
+	</div>
 </form>
 
 <script type="text/javascript" src="/web/script/jquery.min.js"></script>

@@ -11,21 +11,21 @@
     <title>게시판</title>
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />	    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="/web/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="/web/bootstrap/css/font-awesome.css" type="text/css" media="screen" title="no title" charset="utf-8"/>
-    <link rel="stylesheet" href="/web/bootstrap/css/style.css" type="text/css" media="screen" title="no title" charset="utf-8"/>    	
-	<script src="/web/script/jquery-1.3.2.js"> </script> 
+    <link rel="stylesheet" href="/web/bootstrap/css/bootstrap-theme.css" type="text/css" media="screen" title="no title" charset="utf-8"/>    
+    <link rel="stylesheet" href="/web/bootstrap/css/bootstrap-datetimepicker.min.css" type="text/css" media="screen" title="no title" charset="utf-8"/>
 	<title>Insert title here</title>
 </head>
 <body>
-	<table cellpadding="0" cellspacing="0" border="1" class="tableTd" width="700">
+	<table cellpadding="0" cellspacing="0" border="0" width="700"  class="table table-bordered">
 		<tr>
-			<td width="100" class="titleThead">이름</td>
+			<th width="100">이름</th>
 			<td width="600"><%=newBoardDTO.getName() %></td>
 		</tr>
 		<tr>
-			<td width="100" class="titleThead">제목</td>
+			<th width="100">제목</th>
 			<td width="600"><%=newBoardDTO.getSubj() %></td>
 		</tr>		
 		<tr>
@@ -34,9 +34,9 @@
 	</table>
 	
 	<div style="width:700px;text-align:center;margin-top:5px;">
-		<input type="button" value="목록보기" onclick="javascript:location.href='newlist.do'">
-		<input type="button" value="수정하기" onclick="javascript:location.href='newwrite.do?b_no=<%=newBoardDTO.getB_no()%>'">
-		<input type="button" value="답글" onclick="javascript:location.href='newReply.do?b_no=<%=newBoardDTO.getB_no()%>'">
+		<input type="button" value="목록보기" class="btn"  onclick="javascript:location.href='newlist.do'">
+		<input type="button" value="수정하기" class="btn"  onclick="javascript:location.href='newwrite.do?b_no=<%=newBoardDTO.getB_no()%>'">
+		<input type="button" value="답글" class="btn"  onclick="javascript:location.href='newReply.do?b_no=<%=newBoardDTO.getB_no()%>'">
 	</div>
 </body>
 </html>

@@ -14,15 +14,17 @@
     <title>게시판</title>
     <meta name="description" content="" />
     <meta name="author" content="" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />	    
     <link href="/web/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="/web/bootstrap/css/font-awesome.css" type="text/css" media="screen" title="no title" charset="utf-8"/>
-    <link rel="stylesheet" href="/web/bootstrap/css/style.css" type="text/css" media="screen" title="no title" charset="utf-8"/>	
-	<script src="/web/script/newpaging.js" type="text/javascript"></script>
-    <link rel="stylesheet" href="/web/bootstrap/css/bootstrap.css.map.css" type="text/css" media="screen" title="no title" charset="utf-8"/>
+    <link rel="stylesheet" href="/web/bootstrap/css/style.css" type="text/css" media="screen" title="no title" charset="utf-8"/>
+	<link rel="stylesheet" href="/web/bootstrap/css/bootstrap.css.map.css" type="text/css" media="screen" title="no title" charset="utf-8"/>
     <link rel="stylesheet" href="/web/bootstrap/css/bootstrap-theme.css" type="text/css" media="screen" title="no title" charset="utf-8"/>    
     <link rel="stylesheet" href="/web/bootstrap/css/bootstrap-datetimepicker.min.css" type="text/css" media="screen" title="no title" charset="utf-8"/>
-    <script src="/web/script/jquery-1.3.2.js"> </script> 	
+	<script src="/web/script/jquery-1.3.2.js"> </script>
+	<script type="text/javascript" src="/web/script/jquery.min.js"></script>
+	<script src="/web/script/newpaging.js" type="text/javascript"></script>
 
 	<title>Insert title here</title>
 	<script>
@@ -31,28 +33,36 @@
 			frm.page.value = npage;
 			frm.submit();
 		}
+
+		$(function() {
+			var tpage = "${totalpage}";
+			var nowpage = "${nowpage}";
+			$("#tablepaging").paginate({
+				count 		: tpage,
+				start 		: nowpage,
+			});
+		});	
 	</script>
 </head>
 <body>
 <form name="form" method="post" action="#">
 	<input type="hidden" id="page" name="page" value="${nowpage}" />
 	
-	
-	  <div id="datetimepicker4" class="input-append" date>
+	  <div id="datetimepicker01" class="input-append">
 	    <input data-format="yyyy-MM-dd" type="text"></input>
-	    <span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"> </i></span>
-	  </div>
+	    <span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span>
+	  </div>	
 	
-	<table cellpadding="0" cellspacing="0" border="0" width="700"  class="table table-striped table-bordered table-hover table-condensed">
+	<table cellpadding="0" cellspacing="0" border="0" width="700" class="table table-bordered">
 		<thead>
-			<tr class="success"> 
+			<tr>
 				<th width="80">no</th>
 				<th width="350">제목</th>
 				<th width="100">이름</th>
 				<th width="170">등록일시</th>
 			</tr>
 		</thead>
-
+		
 		<tbody>
 			<c:forEach items="${newboardList}" var="goods"  varStatus="status">
 				<tr>
@@ -68,35 +78,24 @@
 	</table>
 	
 	<div style="width:700px;" id="divpaging" class="pagination pagination-mini pagination-centered">
-		<ul id="paging"></ul>
+		<ul id="tablepaging"></ul>
 	</div>
 	
 	<div style="width:700px;text-align:center;">
-		<input type="button" value="글쓰기"  class="btn" onclick="javascript:location.href='newwrite.do'">
+		<input type="button" value="글쓰기"  class="btn btn-primary" onclick="javascript:location.href='newwrite.do'">
 	</div>
 </form>
 
-<script type="text/javascript">
-	$(function() {
-		var tpage = "${totalpage}";
-		var nowpage = "${nowpage}";
-		$("#paging").paginate({
-			count 		: tpage,
-			start 		: nowpage,		
-		});
-	});
-</script>	
 
-<script type="text/javascript" src="/web/script/jquery.min.js"></script>
 <script src="/web/bootstrap/js/bootstrap-datetimepicker.min.js"> </script>
 <script src="/web/bootstrap/js/bootstrap-datetimepicker.pt-BR.js"> </script>
 <script type="text/javascript">
-  $(function() {
-    $('#datetimepicker4').datetimepicker({
-        format: 'yyyy-MM-dd',
-        language: 'pt-BR'
-    });
-  });
+	$(function() {
+	    $('#datetimepicker01').datetimepicker({
+	        format: 'yyyy-MM-dd',
+	        language: 'pt-BR'
+	    });		
+	});
 </script>
 </body>
 </html>
