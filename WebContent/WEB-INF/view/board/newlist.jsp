@@ -14,13 +14,15 @@
     <title>게시판</title>
     <meta name="description" content="" />
     <meta name="author" content="" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />	    
     <link href="/web/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="/web/bootstrap/css/font-awesome.css" type="text/css" media="screen" title="no title" charset="utf-8"/>
-    <link rel="stylesheet" href="/web/bootstrap/css/style.css" type="text/css" media="screen" title="no title" charset="utf-8"/>    	
-	<script src="/web/script/jquery-1.3.2.js"> </script> 
-	<script src="/web/script/newpaging.js" type="text/javascript"></script>	
+    <link rel="stylesheet" href="/web/bootstrap/css/style.css" type="text/css" media="screen" title="no title" charset="utf-8"/>	
+	<script src="/web/script/newpaging.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="/web/bootstrap/css/bootstrap.css.map.css" type="text/css" media="screen" title="no title" charset="utf-8"/>
+    <link rel="stylesheet" href="/web/bootstrap/css/bootstrap-theme.css" type="text/css" media="screen" title="no title" charset="utf-8"/>    
+    <link rel="stylesheet" href="/web/bootstrap/css/bootstrap-datetimepicker.min.css" type="text/css" media="screen" title="no title" charset="utf-8"/>
+    <script src="/web/script/jquery-1.3.2.js"> </script> 	
 
 	<title>Insert title here</title>
 	<script>
@@ -34,16 +36,23 @@
 <body>
 <form name="form" method="post" action="#">
 	<input type="hidden" id="page" name="page" value="${nowpage}" />
-	<table cellpadding="0" cellspacing="0" border="1" class="tableTd" width="700">
-		<thead class="titleThead">
-			<tr>
-				<td width="80">no</td>
-				<td width="350">제목</td>
-				<td width="100">이름</td>
-				<td width="170">등록일시</td>
+	
+	
+	  <div id="datetimepicker4" class="input-append" date>
+	    <input data-format="yyyy-MM-dd" type="text"></input>
+	    <span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"> </i></span>
+	  </div>
+	
+	<table cellpadding="0" cellspacing="0" border="0" width="700"  class="table table-striped table-bordered table-hover table-condensed">
+		<thead>
+			<tr class="success"> 
+				<th width="80">no</th>
+				<th width="350">제목</th>
+				<th width="100">이름</th>
+				<th width="170">등록일시</th>
 			</tr>
 		</thead>
-		
+
 		<tbody>
 			<c:forEach items="${newboardList}" var="goods"  varStatus="status">
 				<tr>
@@ -73,16 +82,21 @@
 		var nowpage = "${nowpage}";
 		$("#paging").paginate({
 			count 		: tpage,
-			start 		: nowpage,
-			display     : 10,
-			rotate                     : false,
-			images					: false,
-			mouse					: 'press',
-			onChange     			: function(page) {
-											  nexpage(page);
-										  }
+			start 		: nowpage,		
 		});
 	});
 </script>	
+
+<script type="text/javascript" src="/web/script/jquery.min.js"></script>
+<script src="/web/bootstrap/js/bootstrap-datetimepicker.min.js"> </script>
+<script src="/web/bootstrap/js/bootstrap-datetimepicker.pt-BR.js"> </script>
+<script type="text/javascript">
+  $(function() {
+    $('#datetimepicker4').datetimepicker({
+        format: 'yyyy-MM-dd',
+        language: 'pt-BR'
+    });
+  });
+</script>
 </body>
 </html>

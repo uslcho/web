@@ -7,8 +7,19 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="/web/css/style.css" media="screen"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>게시판</title>
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/web/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="/web/bootstrap/css/font-awesome.css" type="text/css" media="screen" title="no title" charset="utf-8"/>
+    <link rel="stylesheet" href="/web/bootstrap/css/style.css" type="text/css" media="screen" title="no title" charset="utf-8"/>
+    <link rel="stylesheet" href="/web/bootstrap/css/bootstrap-theme.css" type="text/css" media="screen" title="no title" charset="utf-8"/>    
+    <link rel="stylesheet" href="/web/bootstrap/css/bootstrap-datetimepicker.min.css" type="text/css" media="screen" title="no title" charset="utf-8"/>
+    <script src="/web/script/jquery-1.3.2.js"> </script>
+	
 	<script type="text/javascript">
 		function savesubmit() {
 			frm = document.form;		
@@ -21,6 +32,19 @@
 </head>
 <body>
 <form name="form" method="post" action="#">
+  <div id="datetimepicker01" class="input-append">
+    <input data-format="yyyy-MM-dd" type="text"></input>
+    <span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span>
+  </div>
+
+~
+
+  <div id="datetimepicker02" class="input-append">
+    <input data-format="yyyy-MM-dd" type="text"></input>
+    <span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span>
+  </div>
+
+
 
 	<table cellpadding="0" cellspacing="0" border="1" class="tableTd" width="700">
 		<tr>
@@ -37,7 +61,7 @@
 		</tr>		
 		<tr>
 			<td width="700" colspan="2" style="text-align:left;">
-				<textarea cols="100" id="content" name="content" rows="10"><%  if(newBoardDTO != null) {  %><%=newBoardDTO.getNewcontents() %><% } %></textarea>
+				<textarea id="content" name="content" style="width:680px;height:100px;"><%  if(newBoardDTO != null) {  %><%=newBoardDTO.getNewcontents() %><% } %></textarea>
 			</td>
 		</tr>
 	</table>
@@ -45,5 +69,22 @@
 	<input type="button" value="글쓰기" onclick="savesubmit();">
 	<input type="button" value="목록보기" onclick="javascript:location.href='newlist.do'">
 </form>
+
+<script type="text/javascript" src="/web/script/jquery.min.js"></script>
+<script src="/web/bootstrap/js/bootstrap-datetimepicker.min.js"> </script>
+<script src="/web/bootstrap/js/bootstrap-datetimepicker.pt-BR.js"> </script>
+<script type="text/javascript">
+  $(function() {
+    $('#datetimepicker01').datetimepicker({
+        format: 'yyyy-MM-dd',
+        language: 'pt-BR'
+    });
+    
+    $('#datetimepicker02').datetimepicker({
+        format: 'yyyy-MM-dd',
+        language: 'pt-BR'
+    });    
+  });
+</script>
 </body>
 </html>
