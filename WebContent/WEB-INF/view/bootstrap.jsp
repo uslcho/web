@@ -5,9 +5,8 @@
     <title>boooooooo</title>
 
     <!-- Bootstrap core CSS -->
+    <link href="/web/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="/web/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-   
   </head>
 
   <body>

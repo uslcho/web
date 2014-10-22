@@ -108,13 +108,13 @@ input,
 select,
 textarea {
   margin: 0;
-  font-size: 100%;
+  font-size: 12px;
   vertical-align: middle;
 }
 button,
 input {
   *overflow: visible;
-  line-height: normal;
+  line-height: normal;  
 }
 button::-moz-focus-inner,
 input::-moz-focus-inner {
@@ -1206,7 +1206,7 @@ input,
 button,
 select,
 textarea {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: normal;
   line-height: 20px;
 }
@@ -1241,7 +1241,7 @@ input[type="color"],
   height: 20px;
   padding: 4px 6px;
   margin-bottom: 10px;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 20px;
   color: #555555;
   -webkit-border-radius: 4px;
@@ -1756,7 +1756,7 @@ select:focus:invalid:focus {
 .input-prepend .dropdown-menu,
 .input-append .popover,
 .input-prepend .popover {
-  font-size: 14px;
+  font-size: 12px;
 }
 .input-append input,
 .input-prepend input,
@@ -1787,7 +1787,7 @@ select:focus:invalid:focus {
   height: 20px;
   min-width: 16px;
   padding: 4px 5px;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: normal;
   line-height: 20px;
   text-align: center;

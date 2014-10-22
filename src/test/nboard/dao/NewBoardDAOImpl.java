@@ -6,6 +6,8 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import test.nboard.dto.NewBoardDTO;
 
@@ -45,6 +47,12 @@ public class NewBoardDAOImpl  extends SqlSessionDaoSupport implements NewBoardDA
 		getSqlSession().update("newboard.updateBoard", newBoardDTO);
 	}
 	
+	//삭제
+	@Override		
+	public void deleteBoard(NewBoardDTO newBoardDTO)  throws Exception {
+		getSqlSession().delete("newboard.deleteBoard", newBoardDTO);
+	}	
+	
 	@Override
 	public int getRefMax()  throws Exception {
 		return Integer.parseInt(getSqlSession().selectOne("newboard.getRefMax").toString());
@@ -67,5 +75,23 @@ public class NewBoardDAOImpl  extends SqlSessionDaoSupport implements NewBoardDA
 		getSqlSession().insert("newboard.insertReplyBoard", newBoardDTO);
 		int b_no = newBoardDTO.getB_no().intValue();
 		return b_no;		
+	}
+	
+	//코멘트
+	@Override
+	public void insertComment(NewBoardDTO newBoardDTO) throws Exception {
+		getSqlSession().insert("newboard.insertComment",newBoardDTO);
+	}
+	
+	//코멘트리스트
+	@Override	
+	public List<NewBoardDTO> listBoardComment(NewBoardDTO newBoardDTO) throws Exception {
+		return  getSqlSession().selectList("newboard.listBoardComment",newBoardDTO);
+	}
+	
+	//코멘트삭제
+	@Override	
+	public void deleteBoardComment(NewBoardDTO newBoardDTO)  throws Exception {
+		getSqlSession().delete("newboard.deleteBoardComment", newBoardDTO);
 	}
 }

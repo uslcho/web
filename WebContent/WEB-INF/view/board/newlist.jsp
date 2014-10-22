@@ -17,10 +17,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />	    
     <link href="/web/bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link rel="stylesheet" href="/web/bootstrap/css/font-awesome.css" type="text/css" media="screen" title="no title" charset="utf-8"/>
     <link rel="stylesheet" href="/web/bootstrap/css/style.css" type="text/css" media="screen" title="no title" charset="utf-8"/>
-	<link rel="stylesheet" href="/web/bootstrap/css/bootstrap.css.map.css" type="text/css" media="screen" title="no title" charset="utf-8"/>
-    <link rel="stylesheet" href="/web/bootstrap/css/bootstrap-theme.css" type="text/css" media="screen" title="no title" charset="utf-8"/>    
     <link rel="stylesheet" href="/web/bootstrap/css/bootstrap-datetimepicker.min.css" type="text/css" media="screen" title="no title" charset="utf-8"/>
 	<script src="/web/script/jquery-1.3.2.js"> </script>
 	<script type="text/javascript" src="/web/script/jquery.min.js"></script>
@@ -49,7 +46,7 @@
 	<input type="hidden" id="page" name="page" value="${nowpage}" />
 	
 	  <div id="datetimepicker01" class="input-append">
-	    <input data-format="yyyy-MM-dd" type="text"></input>
+	    <input data-format="yyyy-MM-dd" type="text" style="width:80px;"></input>
 	    <span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span>
 	  </div>	
 	
@@ -59,7 +56,7 @@
 				<th width="80">no</th>
 				<th width="350">제목</th>
 				<th width="100">이름</th>
-				<th width="170">등록일시</th>
+				<th width="170">등록일</th>
 			</tr>
 		</thead>
 		
@@ -68,6 +65,12 @@
 				<tr>
 					<td width="80"><c:out value="${goods.num}" /></td>
 					<td width="350">
+						<c:if test="${goods.b_level ne 0}">							
+							<c:forEach begin="1" end="${goods.b_level}">
+								&nbsp;&nbsp;
+							</c:forEach>
+							Re : 
+						</c:if>
 						<a href="./newview.do?b_no=${goods.b_no}"><c:out value="${goods.subj}" /></a>
 					</td>
 					<td width="100"><c:out value="${goods.name}" /></td>
@@ -77,16 +80,14 @@
 		</tbody>
 	</table>
 	
-	<div style="width:700px;" id="divpaging" class="pagination pagination-mini pagination-centered">
+	<div style="width:700px;" id="divpaging" class="pagination pagination-small pagination-centered">
 		<ul id="tablepaging"></ul>
 	</div>
 	
-	<div style="width:700px;text-align:center;">
-		<input type="button" value="글쓰기"  class="btn btn-primary" onclick="javascript:location.href='newwrite.do'">
+	<div style="width:700px;text-align:right;">
+		<input type="button" value="글쓰기"  class="btn btn-small btn-primary" onclick="javascript:location.href='newwrite.do'">
 	</div>
 </form>
-
-
 <script src="/web/bootstrap/js/bootstrap-datetimepicker.min.js"> </script>
 <script src="/web/bootstrap/js/bootstrap-datetimepicker.pt-BR.js"> </script>
 <script type="text/javascript">

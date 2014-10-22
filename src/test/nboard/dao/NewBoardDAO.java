@@ -23,6 +23,18 @@ public interface NewBoardDAO {
 	
 	public int  getStepMax(NewBoardDTO newBoardDTO)  throws Exception;
 	
+	//삭제
+	public void deleteBoard(NewBoardDTO newBoardDTO)  throws Exception;	
+	
 	//리플
-	public int insertReplyBoard(NewBoardDTO newBoardDTO) throws Exception;	
+	public int insertReplyBoard(NewBoardDTO newBoardDTO) throws Exception;
+	
+	//코멘트
+	public void insertComment(NewBoardDTO newBoardDTO) throws Exception;
+	
+	//코멘트리스트
+	public List<NewBoardDTO> listBoardComment(NewBoardDTO newBoardDTO) throws Exception;
+	
+	//코멘트삭제
+	public void deleteBoardComment(NewBoardDTO newBoardDTO)  throws Exception;
 }

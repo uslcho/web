@@ -51,7 +51,7 @@ public class NewBoardController {
 				totalpage = (int)Math.ceil(doublepage);
 			}
 			
-			List<NewBoardDTO> newboardList = newboardService.getBoardList(pageModel);			
+			List<NewBoardDTO> newboardList = this.newboardService.getBoardList(pageModel);			
 			mav.addObject("newboardList", newboardList);
 			mav.addObject("totalcnt", totalcnt);
 			mav.addObject("totalpage", totalpage);
@@ -68,7 +68,7 @@ public class NewBoardController {
 		ModelAndView mav = new ModelAndView();
 		try {
 			if(request.getParameter("b_no") != null && !request.getParameter("b_no") .equals("")) {
-				NewBoardDTO newBoardDTO = newboardService.getBoard(new BigDecimal(request.getParameter("b_no")));
+				NewBoardDTO newBoardDTO = this.newboardService.getBoard(new BigDecimal(request.getParameter("b_no")));
 				String content = newBoardDTO.getNewcontents();
 				content = content.replaceAll ("\"", "'");
 				content = content.replaceAll ("\n", "<br />");
@@ -76,8 +76,16 @@ public class NewBoardController {
 				//content = content.replaceAll ("&nbsp;", " ");				
 				System.out.println("content====>>>>"+content);
 				
+				List<NewBoardDTO> listBoardComment = this.newboardService.listBoardComment(newBoardDTO);
+				
+				for(NewBoardDTO model : listBoardComment) {
+					model.setComment(model.getComment().replaceAll ("\"", "'"));
+					model.setComment(model.getComment().replaceAll("\n", "<br />"));
+				}
+				
 				newBoardDTO.setNewcontents(content);
 				mav.addObject("newBoardDTO", newBoardDTO);
+				mav.addObject("listBoardComment", listBoardComment);
 				mav.setViewName("/board/newview");
 			} else {
 				mav.setViewName("/board/newlist");
@@ -93,7 +101,7 @@ public class NewBoardController {
 		ModelAndView mav = new ModelAndView();
 		if(request.getParameter("b_no") != null && !request.getParameter("b_no") .equals("")) {
 			try {		
-				NewBoardDTO newBoardDTO = newboardService.getBoard(new BigDecimal(request.getParameter("b_no")));
+				NewBoardDTO newBoardDTO = this.newboardService.getBoard(new BigDecimal(request.getParameter("b_no")));
 				String content = newBoardDTO.getNewcontents();
 				content = content.replaceAll ("\"", "'");
 				newBoardDTO.setNewcontents(content);
@@ -117,11 +125,11 @@ public class NewBoardController {
 				String content = request.getParameter("content");			
 				newBoardDTO.setNewcontents(content);	
 				b_no = Integer.parseInt(request.getParameter("b_no"));
-				newboardService.updateBoard(newBoardDTO);
+				this.newboardService.updateBoard(newBoardDTO);
 			} else {
 				String content = request.getParameter("content");			
 				newBoardDTO.setNewcontents(content);
-				b_no = newboardService.insertBoard(newBoardDTO);
+				b_no = this.newboardService.insertBoard(newBoardDTO);
 			}
 			response.sendRedirect("/web/view/board/newview.do?b_no="+b_no);
 		}catch(Exception e) {
@@ -135,7 +143,7 @@ public class NewBoardController {
 		ModelAndView mav = new ModelAndView();
 		if(request.getParameter("b_no") != null && !request.getParameter("b_no") .equals("")) {
 			try {		
-				NewBoardDTO newBoardDTO = newboardService.getBoard(new BigDecimal(request.getParameter("b_no")));
+				NewBoardDTO newBoardDTO = this.newboardService.getBoard(new BigDecimal(request.getParameter("b_no")));
 				String content = newBoardDTO.getNewcontents();
 				content = content.replaceAll ("\"", "'");
 				newBoardDTO.setNewcontents(content);
@@ -158,9 +166,45 @@ public class NewBoardController {
 			if(request.getParameter("b_no") != null && !request.getParameter("b_no") .equals("")) {				
 				String content = request.getParameter("content");
 				newBoardDTO.setNewcontents(content);
-				b_no = newboardService.insertReplyBoard(newBoardDTO);
+				b_no = this.newboardService.insertReplyBoard(newBoardDTO);
 			}
 			response.sendRedirect("/web/view/board/newview.do?b_no="+b_no);
+		}catch(Exception e) {
+			logger.info("insert Fail...");
+			e.printStackTrace();
+		}
+	}
+	
+	@RequestMapping(value="/view/board/newview.do", method=RequestMethod.POST)
+	public void insertComment(HttpServletRequest request, HttpServletResponse response, NewBoardDTO newBoardDTO, BindingResult errors) {
+		if(errors.hasErrors()) {
+			logger.info("errors..");
+		}		
+		try {		
+			int b_no = 0;			
+			if(request.getParameter("b_no") != null && !request.getParameter("b_no") .equals("")) {
+				b_no	= Integer.parseInt(request.getParameter("b_no"));	
+				this.newboardService.insertComment(newBoardDTO);
+			}
+			response.sendRedirect("/web/view/board/newview.do?b_no="+b_no);
+		}catch(Exception e) {
+			logger.info("insert Fail...");
+			e.printStackTrace();
+		}
+	}
+	
+	@RequestMapping(value="/view/board/deleteBoard.do", method=RequestMethod.POST)
+	public void deleteBoard(HttpServletRequest request, HttpServletResponse response, NewBoardDTO newBoardDTO, BindingResult errors) {
+		if(errors.hasErrors()) {
+			logger.info("errors..");
+		}		
+		try {		
+			int b_no = 0;			
+			if(request.getParameter("b_no") != null && !request.getParameter("b_no") .equals("")) {
+				b_no	= Integer.parseInt(request.getParameter("b_no"));	
+				this.newboardService.deleteBoard(newBoardDTO);
+			}
+			response.sendRedirect("/web/view/board/newlist.do");
 		}catch(Exception e) {
 			logger.info("insert Fail...");
 			e.printStackTrace();

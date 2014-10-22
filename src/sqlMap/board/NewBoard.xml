@@ -50,6 +50,10 @@
 		WHERE B_NO = #{b_no}
 	</update>
 		
+	<delete id="deleteBoard" parameterType="newboard">
+		DELETE FROM BOARD WHERE B_NO = #{b_no}
+	</delete>
+		
 	<update id="updateCommunitySetp" parameterType="newboard">
 		UPDATE BOARD SET STEP = STEP+1 WHERE REF = #{ref} AND STEP > #{step}
 	</update>
@@ -67,5 +71,28 @@
 		<selectKey resultType="BigDecimal" keyProperty="b_no" order="AFTER">
 			SELECT MAX(B_NO) AS B_NO FROM BOARD
 		</selectKey>
-	</insert>	
+	</insert>
+	
+	<insert id="insertComment" parameterType="newboard">
+		INSERT INTO TABLE_COMMENT (
+			B_NO, COMMENT, REGDATE
+		) VALUES (
+			#{b_no}, #{comment}, sysdate()
+		)
+	</insert>
+	
+	<select id="listBoardComment" parameterType="newboard" resultType="newboard">
+		SELECT COMMENTSEQ, B_NO, COMMENT, date_format(REGDATE,"%Y-%m-%d") AS REGDATE
+		FROM TABLE_COMMENT
+		WHERE B_NO = #{b_no}
+	</select>
+	
+	<delete id="deleteBoardComment" parameterType="newboard">
+		DELETE FROM TABLE_COMMENT WHERE B_NO = #{b_no}
+		<set>
+			<if test="commentseq != null">
+				AND COMMENTSEQ = #{commentseq}
+			</if>
+		</set>
+	</delete>	
 </mapper>

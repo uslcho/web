@@ -2,6 +2,7 @@ package test.nboard.service;
 
 import java.math.BigDecimal;
 import java.util.List;
+
 import test.nboard.dto.NewBoardDTO;
 
 public interface NewBoardService {
@@ -21,6 +22,18 @@ public interface NewBoardService {
 	//수정
 	public void updateBoard(NewBoardDTO newBoardDTO)  throws Exception;
 	
+	//삭제
+	public void deleteBoard(NewBoardDTO newBoardDTO)  throws Exception;
+	
 	//리플
 	public int insertReplyBoard(NewBoardDTO newBoardDTO) throws Exception;
+	
+	//코멘트
+	public void insertComment(NewBoardDTO newBoardDTO) throws Exception;
+	
+	//코멘트리스트
+	public List<NewBoardDTO> listBoardComment(NewBoardDTO newBoardDTO) throws Exception;
+	
+	//코멘트삭제
+	void deleteBoardComment(NewBoardDTO newBoardDTO) throws Exception;
 }

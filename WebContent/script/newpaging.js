@@ -16,11 +16,11 @@
 		var ver = "ie7";
 
 	$.fn.draw = function(o,obj,selectedpage) {
-
-		var _first = $(document.createElement("li")).html("<a onclick='nexpage(1);'>First</a>");
-		$this.append(_first)		
-		
+	
 		if(Number(selectedpage) > 1) {
+			var _first = $(document.createElement("li")).html("<a onclick='nexpage(1);'>First</a>");
+			$this.append(_first)			
+			
 			var _pre = $(document.createElement("li")).html("<a onclick='nexpage("+Number(selectedpage)+"-1);'>Prev</a>");
 			$this.append(_pre)
 		}
@@ -54,10 +54,10 @@
 		if(Number(selectedpage) < Number(o.count)) {
 			var _next = $(document.createElement("li")).html("<a onclick='nexpage("+Number(selectedpage)+"+1);'>Next</a>");
 			$this.append(_next);
+			
+			var _last = $(document.createElement("li")).html("<a onclick='nexpage("+o.count+");'>Last</a>");
+			$this.append(_last)			
 		}
-		
-		var _last = $(document.createElement("li")).html("<a onclick='nexpage("+o.count+");'>Last</a>");
-		$this.append(_last)
 	}
 	
 	$.fn.applystyle = function(o,obj,a_css,hover_css,_first,_ul,_ulwrapdiv,_divwrapright){

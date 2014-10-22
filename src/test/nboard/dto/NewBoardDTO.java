@@ -16,7 +16,21 @@ public class NewBoardDTO {
 	private BigDecimal num;
 	private String regdate;
 	private String newcontents;
-
+	private String comment;
+	private BigDecimal commentseq;
+	
+	public BigDecimal getCommentseq() {
+		return commentseq;
+	}
+	public void setCommentseq(BigDecimal commentseq) {
+		this.commentseq = commentseq;
+	}
+	public String getComment() {
+		return comment;
+	}
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
 	public String getNewcontents() {
 		return newcontents;
 	}

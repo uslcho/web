@@ -57,6 +57,14 @@ public class NewBoardServiceImpl  implements NewBoardService{
 		this.newBoardDAO.updateBoard(newBoardDTO);
 	}
 	
+	//삭제
+	@Override
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})	
+	public void deleteBoard(NewBoardDTO newBoardDTO)  throws Exception {
+		this.newBoardDAO.deleteBoard(newBoardDTO);
+		deleteBoardComment(newBoardDTO);
+	}
+	
 	//리플
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})		
@@ -71,5 +79,26 @@ public class NewBoardServiceImpl  implements NewBoardService{
 		
 		//답글 저장
 		return this.newBoardDAO.insertReplyBoard(newBoardDTO);
+	}
+	
+	//코멘트
+	@Override
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	public void insertComment(NewBoardDTO newBoardDTO) throws Exception {
+		this.newBoardDAO.insertComment(newBoardDTO);
+	}
+	
+	//코멘트리스트
+	@Override
+	@Transactional(readOnly=true)	
+	public List<NewBoardDTO> listBoardComment(NewBoardDTO newBoardDTO) throws Exception {
+		return this.newBoardDAO.listBoardComment(newBoardDTO);
+	}
+	
+	//코멘트삭제
+	@Override
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})	
+	public void deleteBoardComment(NewBoardDTO newBoardDTO)  throws Exception {
+		this.newBoardDAO.deleteBoardComment(newBoardDTO);
 	}	
 }
