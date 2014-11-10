@@ -18,7 +18,35 @@ public class NewBoardDTO {
 	private String newcontents;
 	private String comment;
 	private BigDecimal commentseq;
-	
+	private String search;
+	private String searchText;
+	private String sdate;
+	private String edate;
+
+	public String getSdate() {
+		return sdate;
+	}
+	public void setSdate(String sdate) {
+		this.sdate = sdate;
+	}
+	public String getEdate() {
+		return edate;
+	}
+	public void setEdate(String edate) {
+		this.edate = edate;
+	}
+	public String getSearch() {
+		return search;
+	}
+	public void setSearch(String search) {
+		this.search = search;
+	}
+	public String getSearchText() {
+		return searchText;
+	}
+	public void setSearchText(String searchText) {
+		this.searchText = searchText;
+	}
 	public BigDecimal getCommentseq() {
 		return commentseq;
 	}

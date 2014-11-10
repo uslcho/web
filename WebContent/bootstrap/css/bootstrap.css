@@ -1240,7 +1240,7 @@ input[type="color"],
   display: inline-block;
   height: 20px;
   padding: 4px 6px;
-  margin-bottom: 10px;
+  margin-bottom: 0px;
   font-size: 12px;
   line-height: 20px;
   color: #555555;
@@ -3514,6 +3514,7 @@ input[type="submit"].btn.btn-mini {
 .breadcrumb > .active {
   color: #999999;
 }
+
 .pagination {
   margin: 20px 0;
 }

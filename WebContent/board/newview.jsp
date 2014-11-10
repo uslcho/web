@@ -17,7 +17,8 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="/web/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="/web/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/web/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/web/bootstrap/css/style.css" type="text/css" media="screen" title="no title" charset="utf-8"/>
 	<script src="/web/script/jquery-1.3.2.js"> </script>
 
@@ -45,17 +46,17 @@
 	<form name="form" method="post" action="#">
 		<input type="hidden" name="b_no" value="<% if(newBoardDTO != null)  { %><%=newBoardDTO.getB_no() %><% } %>">
 		
-		<table cellpadding="0" cellspacing="0" border="0" width="700"  class="table table-bordered">
+		<table cellpadding="0" cellspacing="0" border="0" width="100%"  class="table table-bordered">
 			<tr>
-				<th width="100">이름</th>
-				<td width="600"><%=newBoardDTO.getName() %></td>
+				<th width="15%">이름</th>
+				<td width="85%"><%=newBoardDTO.getName() %></td>
 			</tr>
 			<tr>
-				<th width="100">제목</th>
-				<td width="600"><%=newBoardDTO.getSubj() %></td>
+				<th width="15%">제목</th>
+				<td width="85%"><%=newBoardDTO.getSubj() %></td>
 			</tr>		
 			<tr>
-				<td width="700" colspan="2" style="text-align:left;">
+				<td width="100%" colspan="2" style="text-align:left;">
 					<%=newBoardDTO.getNewcontents() %><br /><br /><br />
 		
 					<div id="fb-root"></div>
@@ -74,11 +75,11 @@
 			</tr>
 		</table>
 		
-		<div style="width:700px;text-align:right;margin-bottom:15px;">
-			<input type="button" value="목록보기" class="btn btn-small btn-primary"  onclick="javascript:location.href='newlist.do'">
-			<input type="button" value="수정하기" class="btn btn-small btn-primary"  onclick="javascript:location.href='newwrite.do?b_no=<%=newBoardDTO.getB_no()%>'">
-			<input type="button" value="답글" class="btn btn-small btn-primary"  onclick="javascript:location.href='newReply.do?b_no=<%=newBoardDTO.getB_no()%>'">
-			<input type="button" value="삭제" class="btn btn-small btn-primary"  onclick="deleteSubmit();">
+		<div style="width:100%;text-align:right;margin-bottom:15px;">
+			<input type="button" value="목록보기" class="btn btn-sx btn-primary"  onclick="javascript:location.href='newlist.do'">
+			<input type="button" value="수정하기" class="btn btn-sx btn-primary"  onclick="javascript:location.href='newwrite.do?b_no=<%=newBoardDTO.getB_no()%>'">
+			<input type="button" value="답글" class="btn btn-sx btn-primary"  onclick="javascript:location.href='newReply.do?b_no=<%=newBoardDTO.getB_no()%>'">
+			<input type="button" value="삭제" class="btn btn-sx btn-primary"  onclick="deleteSubmit();">
 		</div>
 		
 		<c:if test="${not empty listBoardComment}">
@@ -91,13 +92,13 @@
 		</table>
 		</c:if>
 
-		<table cellpadding="0" cellspacing="0" border="0" width="700"  class="table table-bordered">
+		<table cellpadding="0" cellspacing="0" border="0" width="100%"  class="table table-bordered">
 			<tr>
-				<td width="600"  style="text-align:left;">
-					<textarea id="comment" name="comment" style="width:580px;height:30px;"></textarea>
+				<td width="95%"  style="text-align:left;height:60px;">
+					<textarea id="comment" name="comment" style="width:95%;height:50px;"></textarea>
 				</td>
-				<td width="100"  style="text-align:right;">
-					<input type="button" value="코멘트" class="btn btn-small btn-primary"  onclick="commentsubmit();">
+				<td width="5%"  style="text-align:right;height:60px;" valign="middle">
+					<input type="button" value="코멘트" class="btn btn-lg btn-primary"  onclick="commentsubmit();">
 				</td>
 			</tr>
 		</table>

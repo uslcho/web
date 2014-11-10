@@ -33,7 +33,7 @@ public class NewBoardDAOImpl  extends SqlSessionDaoSupport implements NewBoardDA
 	//총갯수
 	@Override
 	public int getBoardTotalcnt(NewBoardDTO newBoardDTO) throws Exception {
-		return Integer.parseInt(getSqlSession().selectOne("newboard.getBoardTotalcnt").toString());
+		return Integer.parseInt(getSqlSession().selectOne("newboard.getBoardTotalcnt", newBoardDTO).toString());
 	}
 	
 	@Override

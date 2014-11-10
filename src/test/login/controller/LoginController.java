@@ -24,30 +24,40 @@ public class LoginController {
 	@Autowired
 	private LoginService loginService;
 	
-	@RequestMapping(value="/view/login.do", method=RequestMethod.GET)
+	@RequestMapping(value="/login.do", method=RequestMethod.GET)
 	public ModelAndView UserLogin(HttpServletRequest request, HttpServletResponse response) {		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("login");
 		return mav;
 	}
 	
-	@RequestMapping(value="/view/bootstrap.do", method=RequestMethod.GET)
+	@RequestMapping(value="/test.do", method=RequestMethod.GET)
+	public ModelAndView Test(HttpServletRequest request, HttpServletResponse response) {		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("test");
+		return mav;
+	}	
+	
+	@RequestMapping(value="/bootstrap.do", method=RequestMethod.GET)
 	public ModelAndView BootstrapTest(HttpServletRequest request, HttpServletResponse response) {		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("bootstrap");
 		return mav;
 	}	
 	
-	@RequestMapping(value="/view/login.do", method=RequestMethod.POST)
+	@RequestMapping(value="/login.do", method=RequestMethod.POST)
 	public void getLogin(HttpSession session, HttpServletRequest request, HttpServletResponse response, LoginDTO loginDTO) {		
 		try {
+			
+			log.debug("222222222222222222222222222222");
+			
 			LoginDTO login = this.loginService.getLogin(loginDTO);
 			if(login == null) {
-				response.sendRedirect("/web/view/login.do");
+				response.sendRedirect("/web/login.do");
 			} else {				
 				session.setAttribute("usernm", login.getUsernm());
 				session.setAttribute("membno", login.getMembno());
-				response.sendRedirect("/web/view/loginSuccess.do");
+				response.sendRedirect("/web/loginSuccess.do");
 			}			
 		}catch(Exception e) {
 			log.info("login Fail...");
@@ -55,19 +65,19 @@ public class LoginController {
 		}
 	}
 
-	@RequestMapping("/view/loginout.do")
+	@RequestMapping("/loginout.do")
 	public void LoginOut(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
 		try {
 			session.removeAttribute("usernm");
 			session.removeAttribute("membno");				
-			response.sendRedirect("/web/view/login.do");
+			response.sendRedirect("/web/login.do");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
-	@RequestMapping("/view/loginSuccess.do")
+	@RequestMapping("/loginSuccess.do")
 	public ModelAndView LoginSuccess(HttpServletRequest request, HttpServletResponse response) {		
 		ModelAndView mav = new ModelAndView();		
 		mav.setViewName("loginSuccess");

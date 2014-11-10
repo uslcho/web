@@ -8,17 +8,56 @@
 	</resultMap>
 
 	<select id="getBoardList" resultType="newboard" parameterType="newboard">
-		SELECT * FROM (
+		SELECT A.NUM, A.B_NO, A.NAME, A.SUBJ, A.REGDATE, A.B_LEVEL, A.NEWCONTENTS
+		FROM (
 			SELECT A.*, @i:=@i+1 AS NUM
 			FROM BOARD A, (SELECT @i:=0 FROM DUAL) B
 			ORDER BY A.REF ASC, A.STEP DESC, A.B_LEVEL DESC
-		) A
+		) A WHERE 1=1
+		<if test="sdate != '' and sdate != null">
+			<if test="edate != '' and edate != null">
+				AND SUBSTRING(REGDATE,1,10) BETWEEN #{sdate} AND #{edate}
+			</if>
+		</if>
+		<if test="searchText != '' and searchText != null">
+			<if test="search == 1">
+				AND A.SUBJ LIKE '%${searchText}%'
+			</if>
+			<if test="search == 2">
+				AND A.NAME LIKE '%${searchText}%'
+			</if>
+			<if test="search == 3">
+				AND A.NEWCONTENTS LIKE '%${searchText}%'
+			</if>
+			<if test="search == 4">
+				AND (A.SUBJ LIKE '%${searchText}%' OR A.NEWCONTENTS LIKE '%${searchText}%')
+			</if>
+		</if>
 		ORDER BY A.REF DESC, A.STEP, A.B_LEVEL
 		LIMIT #{page}, #{pageline};
 	</select>
 
 	<select id="getBoardTotalcnt" parameterType="newboard" resultType="int">
-		SELECT COUNT(*) FROM BOARD
+		SELECT COUNT(*) FROM BOARD WHERE 1=1
+		<if test="sdate != '' and sdate != null">
+			<if test="edate != '' and edate != null">
+				AND SUBSTRING(REGDATE,1,10) BETWEEN #{sdate} AND #{edate}
+			</if>
+		</if>
+		<if test="searchText != '' and searchText != null">
+			<if test="search == 1">
+				AND SUBJ LIKE '%${searchText}%'
+			</if>
+			<if test="search == 2">
+				AND NAME LIKE '%${searchText}%'
+			</if>
+			<if test="search == 3">
+				AND NEWCONTENTS LIKE '%${searchText}%'
+			</if>
+			<if test="search == 4">
+				AND (SUBJ LIKE '%${searchText}%' OR NEWCONTENTS LIKE '%${searchText}%')
+			</if>
+		</if>
 	</select>
 
 	<select id="getBoard" parameterType="BigDecimal" resultType="newboard">
